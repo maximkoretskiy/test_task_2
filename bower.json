@@ -1,0 +1,23 @@
+{
+  "name": "test-task-2",
+  "private": true,
+  "dependencies": {
+    "backbone": "~1.2.2",
+    "bootstrap-sass": "~3.3.5",
+    "jquery": "~2.1.4",
+    "modernizr": "~2.8.1"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/*",
+        "assets/javascripts/bootstrap.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "~3.2.0",
+    "mocha": "~2.3.0"
+  }
+}
