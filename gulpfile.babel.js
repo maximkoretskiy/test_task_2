@@ -9,7 +9,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {
-  return gulp.src('app/styles/*.scss')
+  return gulp.src('app/styles/*.sass')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.sass.sync({
@@ -130,7 +130,7 @@ gulp.task('serve', ['views', 'styles', 'scripts', 'fonts'], () => {
 
   gulp.watch('app/scripts/**/*.js', ['lint']);
   gulp.watch('app/**/*.jade', ['views']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/styles/**/*.sass', ['styles']);
   gulp.watch('app/scripts/**/*.coffee', ['scripts', reload]);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
@@ -165,7 +165,7 @@ gulp.task('serve:test', () => {
 
 // inject bower components
 gulp.task('wiredep', () => {
-  gulp.src('app/styles/*.scss')
+  gulp.src('app/styles/*.sass')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
     }))
