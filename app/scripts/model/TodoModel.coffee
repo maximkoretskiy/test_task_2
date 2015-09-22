@@ -7,5 +7,8 @@ Window.App.Models.TodoModel = Backbone.Model.extend
   toggle: ->
     @save {done: !@get 'done'}
 
+  setTitle: (newTitle)->
+    @save {title: newTitle}
+
   clear: ->
     @destroy()
