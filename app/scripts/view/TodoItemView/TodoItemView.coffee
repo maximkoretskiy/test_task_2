@@ -1,5 +1,5 @@
 'use strict'
-Window.App.Views.TodoItemView = Backbone.View.extend
+window.App.Views.TodoItemView = Backbone.View.extend
   template: _.template @$('#todoItem').html()
 
   events:
@@ -14,6 +14,8 @@ Window.App.Views.TodoItemView = Backbone.View.extend
 
   render: ->
     @$el.html @template(@model.attributes)
+    @$el.addClass 'todo-item'
+        .attr('data-js-todo-id', @model.get 'id')
     @done = @$el.find('[data-js-todo-done]')
     @done.prop('checked', @model.get 'done')
     @title = @$el.find('[data-js-todo-title]')

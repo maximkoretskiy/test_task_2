@@ -1,18 +1,17 @@
 'use strict'
-Window.App.Views.TodoAddView = Backbone.View.extend
-  el: @$('[data-js-todo-add]')
+window.App.Views.TodoAddView = Backbone.View.extend
+  template: _.template @$('#todoAdd').html()
 
   events:
     'click [data-js-todo-add-submit]': 'add'
     'keypress [data-js-todo-add-title]': 'addOnEnter'
 
-  initialize: ->
-    @submitButton = @$el.find('[data-js-todo-add-submit]')
-    @todoTitle = @$el.find('[data-js-todo-add-title]')
+  render: ->
+    @$el.html @template()
 
   add: ->
-    title = @todoTitle.val()
-    task = new Window.App.Models.TodoModel({title: title})
+    title = @$el.find('[data-js-todo-add-title]').val()
+    task = new window.App.Models.TodoModel({title: title})
     @collection.addTodoItem(task)
 
   addOnEnter: (e)->

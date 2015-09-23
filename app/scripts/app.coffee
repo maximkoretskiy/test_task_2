@@ -1,5 +1,5 @@
 'use strict'
-Window.App = {
+window.App = {
   Models: {}
   Collections: {}
   Views: {}

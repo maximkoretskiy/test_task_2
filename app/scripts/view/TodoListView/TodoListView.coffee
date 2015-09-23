@@ -1,14 +1,12 @@
 'use strict'
-Window.App.Views.TodoListView = Backbone.View.extend
-  el: @$('[data-js-todo-list]')
-
-  attributes:
-    filters:
-      title: ''
-      done: 'all'
+window.App.Views.TodoListView = Backbone.View.extend
+  filters:
+    title: ''
+    done: 'all'
 
   initialize: ->
     @listenTo(@collection, 'add', @addTodo)
+    @listenTo(@collection, 'change', @onChange)
 
   render: ->
     @$el.html('')
@@ -16,14 +14,14 @@ Window.App.Views.TodoListView = Backbone.View.extend
       @addTodo(todoModel)
 
   hasTitleFilter: ->
-    return @attributes.filters.title.length
+    return @filters.title.length
 
   hasDoneFilter: ->
-    return (@attributes.filters.done != 'all')
+    return (@filters.done != 'all')
 
   addTodo: (todoModel)->
     if(@isTodoMatchFilters(todoModel))
-      todoItemView = new Window.App.Views.TodoItemView({model: todoModel})
+      todoItemView = new window.App.Views.TodoItemView({model: todoModel})
       @$el.append(todoItemView.render().$el)
 
   isTodoMatchFilters: (todoModel)->
@@ -32,15 +30,17 @@ Window.App.Views.TodoListView = Backbone.View.extend
     else
       if(@hasTitleFilter())
         if(@hasDoneFilter())
-          return (((todoModel.get 'title').toLowerCase().indexOf(@attributes.filters.title.toLowerCase()) >= 0) &&
-            ('' + todoModel.get('done')) == @attributes.filters.done)
+          return (((todoModel.get 'title').toLowerCase().indexOf(@filters.title.toLowerCase()) >= 0) &&
+            ('' + todoModel.get('done')) == @filters.done)
         else
-          return ((todoModel.get 'title').toLowerCase().indexOf(@attributes.filters.title.toLowerCase()) >= 0)
+          return ((todoModel.get 'title').toLowerCase().indexOf(@filters.title.toLowerCase()) >= 0)
       else
         if(@hasDoneFilter())
-          return (('' + todoModel.get('done') == @attributes.filters.done))
+          return (('' + todoModel.get('done') == @filters.done))
     return false
 
+  onChange: (e)->
+    @render()
 
 
 
