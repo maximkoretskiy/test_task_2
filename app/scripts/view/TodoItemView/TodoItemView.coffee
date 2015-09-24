@@ -28,15 +28,15 @@ window.App.Views.TodoItemView = Backbone.View.extend
 
   saveEditedTitleOnEnter: (e)->
     if (e.keyCode == 13)
-      @model.setTitle @editTitle.val()
+      @model.changeTitle @editTitle.val()
       @editTitle.addClass 'hidden'
       @title.removeClass 'hidden'
+
+  toggleDone: (e)->
+    @model.toggle()
 
   destroy: ->
     @model.destroy()
 
   remove: ->
     @$el.remove()
-
-  toggleDone: (e)->
-    @model.toggle()

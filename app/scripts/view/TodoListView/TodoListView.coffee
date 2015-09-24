@@ -1,46 +1,21 @@
 'use strict'
 window.App.Views.TodoListView = Backbone.View.extend
-  filters:
-    title: ''
-    done: 'all'
 
   initialize: ->
-    @listenTo(@collection, 'add', @addTodo)
-    @listenTo(@collection, 'change', @onChange)
+    @listenTo(@collection, 'add', @renderTodo)
+    @listenTo(@collection, 'update', @render)
+    # @listenTo(@collection, 'change', @render)
 
   render: ->
-    @$el.html('')
+    @$el.html ''
     @collection.each (todoModel)=>
-      @addTodo(todoModel)
+      @renderTodo(todoModel)
 
-  hasTitleFilter: ->
-    return @filters.title.length
+  renderTodo: (todoModel)->
+    todoItemView = new window.App.Views.TodoItemView({model: todoModel})
+    @$el.append(todoItemView.render().$el)
 
-  hasDoneFilter: ->
-    return (@filters.done != 'all')
 
-  addTodo: (todoModel)->
-    if(@isTodoMatchFilters(todoModel))
-      todoItemView = new window.App.Views.TodoItemView({model: todoModel})
-      @$el.append(todoItemView.render().$el)
-
-  isTodoMatchFilters: (todoModel)->
-    if(!@hasTitleFilter() && !@hasDoneFilter())
-      return true
-    else
-      if(@hasTitleFilter())
-        if(@hasDoneFilter())
-          return (((todoModel.get 'title').toLowerCase().indexOf(@filters.title.toLowerCase()) >= 0) &&
-            ('' + todoModel.get('done')) == @filters.done)
-        else
-          return ((todoModel.get 'title').toLowerCase().indexOf(@filters.title.toLowerCase()) >= 0)
-      else
-        if(@hasDoneFilter())
-          return (('' + todoModel.get('done') == @filters.done))
-    return false
-
-  onChange: (e)->
-    @render()
 
 
 

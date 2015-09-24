@@ -4,11 +4,11 @@ window.App.Models.TodoModel = Backbone.Model.extend
     title: 'Новая задача'
     done: false
 
+  initialize: ->
+    @save()
+
   toggle: ->
-    @save {done: !@get 'done'}
+    @save done: !@get 'done'
 
-  setTitle: (newTitle)->
-    @save {title: newTitle}
-
-  clear: ->
-    @destroy()
+  changeTitle: (newTitle)->
+    @save title: newTitle

@@ -3,9 +3,8 @@ extends layouts/base
 block styles
   // build:css main.css
   link(rel='stylesheet' href='styles/main.css')
-  link(rel='stylesheet' href='styles/TodoItemView.css')
-  link(rel='stylesheet' href='styles/TodoAddView.css')
-  link(rel='stylesheet' href='styles/TodoFilterView.css')
+  link(rel='stylesheet' href='scripts/view/AppView/AppView.css')
+  link(rel='stylesheet' href='scripts/view/TodoItemView/TodoItemView.css')
   // endbuild
 
 block content
@@ -18,20 +17,15 @@ block scripts
   // templates
   script#todoItem(type='text/template')
     include scripts/view/TodoItemView/TodoItemView
-  script#todoAdd(type='text/template')
-    include scripts/view/TodoAddView/TodoAddView
-  script#todoFilter(type='text/template')
-    include scripts/view/TodoFilterView/TodoFilterView
   script#app(type='text/template')
     include scripts/view/AppView/AppView
   // build:js scripts/main.js
   script(src='scripts/app.js')
   script(src='scripts/model/TodoModel.js')
   script(src='scripts/collection/TodoCollection.js')
+  script(src='scripts/collection/TodoFilteredCollection.js')
   script(src='scripts/view/TodoItemView/TodoItemView.js')
   script(src='scripts/view/TodoListView/TodoListView.js')
-  script(src='scripts/view/TodoAddView/TodoAddView.js')
-  script(src='scripts/view/TodoFilterView/TodoFilterView.js')
   script(src='scripts/view/AppView/AppView.js')
   script(src='scripts/main.js')
   // endbuild
