@@ -2,7 +2,7 @@
 window.App.Views.TodoListView = Backbone.View.extend
 
   initialize: ->
-    @listenTo(@collection, 'add', @renderTodo)
+    # @listenTo(@collection, 'add', @renderTodo)
     @listenTo(@collection, 'update', @render)
     # @listenTo(@collection, 'change', @render)
 

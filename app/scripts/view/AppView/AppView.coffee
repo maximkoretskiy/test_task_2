@@ -21,7 +21,7 @@ window.App.Views.AppView = Backbone.View.extend
 
   initialize: ->
     @collection = new window.App.Collections.TodoCollection()
-    @filteredCollection = new window.App.Collections.TodoFilteredCollection @collection.models, originalCollection: @collection
+    @filteredCollection = new window.App.Collections.TodoFilteredCollection null, originalCollection: @collection
 
   render: ->
     @$el.html @template()
