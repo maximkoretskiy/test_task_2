@@ -1,6 +1,6 @@
 'use strict'
 window.App.Views.AppView = Backbone.View.extend
-  el: @$('.content-block')[0]
+  className: 'app-block'
 
   template: _.template @$('#app').html()
 
