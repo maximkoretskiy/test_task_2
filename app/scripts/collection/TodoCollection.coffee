@@ -1,13 +1,13 @@
-'use strict'
-window.App.Collections.TodoCollection = Backbone.Collection.extend
-  model: window.App.Models.TodoModel
+define ['backbone', 'todoModel', 'backbone.localStorage'], (Backbone, TodoModel, localStorage) ->
+  TodoCollection = Backbone.Collection.extend
+    model: TodoModel
 
-  localStorage: new Backbone.LocalStorage("todolist-backbone")
+    localStorage: new Backbone.LocalStorage "todolist-backbone"
 
-  initialize: ->
-    @fetch()
+    initialize: ->
+      @fetch()
 
-  addNewItem: (options)->
-    @create(options)
-    this
+    addNewItem: (options)->
+      @create(options)
+      this
 

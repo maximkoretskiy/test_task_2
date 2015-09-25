@@ -28,6 +28,7 @@
     "gulp-useref": "^1.1.1",
     "main-bower-files": "^2.5.0",
     "opn": "^1.0.1",
+    "requirejs": "^2.1.20",
     "wiredep": "^2.2.2"
   },
   "eslintConfig": {
