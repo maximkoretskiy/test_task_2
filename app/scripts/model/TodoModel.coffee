@@ -1,14 +1,14 @@
-'use strict'
-window.App.Models.TodoModel = Backbone.Model.extend
-  defaults:
-    title: 'Новая задача'
-    done: false
+define ['backbone'], (Backbone)->
+  TodoModel = Backbone.Model.extend
+    defaults:
+      title: 'Новая задача'
+      done: false
 
-  initialize: ->
-    @save()
+    initialize: ->
+      @save()
 
-  toggle: ->
-    @save done: !@get 'done'
+    toggle: ->
+      @save done: !@get 'done'
 
-  changeTitle: (newTitle)->
-    @save title: newTitle
+    changeTitle: (newTitle)->
+      @save title: newTitle

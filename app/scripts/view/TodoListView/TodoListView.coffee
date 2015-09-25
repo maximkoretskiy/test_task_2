@@ -1,19 +1,20 @@
-'use strict'
-window.App.Views.TodoListView = Backbone.View.extend
+define ['backbone', 'todoItemView'], (Backbone, TodoItemView)->
+  TodoListView = Backbone.View.extend
 
-  initialize: ->
-    # @listenTo(@collection, 'add', @renderTodo)
-    @listenTo(@collection, 'update', @render)
-    # @listenTo(@collection, 'change', @render)
+    initialize: ->
+      # @listenTo(@collection, 'add', @renderTodo)
+      @listenTo(@collection, 'update', @render)
+      # @listenTo(@collection, 'change', @render)
 
-  render: ->
-    @$el.html ''
-    @collection.each (todoModel)=>
-      @renderTodo(todoModel)
+    render: ->
+      @$el.html ''
+      @collection.each (todoModel)=>
+        @renderTodo(todoModel)
+      this
 
-  renderTodo: (todoModel)->
-    todoItemView = new window.App.Views.TodoItemView({model: todoModel})
-    @$el.append(todoItemView.render().$el)
+    renderTodo: (todoModel)->
+      todoItemView = new TodoItemView({model: todoModel})
+      @$el.append(todoItemView.render().$el)
 
 
 
