@@ -5,9 +5,6 @@ define ['backbone', 'todoCollection', 'todoFilteredCollection', 'todoListView'],
 
     template: _.template @$('#app').html()
 
-    todoListView:
-      el: '[data-js-todo-list]'
-
     filters:
       title: ''
       done: 'all'
@@ -24,13 +21,9 @@ define ['backbone', 'todoCollection', 'todoFilteredCollection', 'todoListView'],
 
     render: ->
       @$el.html @template()
-      @initInnerViews()
-      @todoListView.render()
-
-
-    initInnerViews: ->
-      todoListView = new TodoListView {el: @todoListView.$el, collection: @filteredCollection}
-      @todoListView = todoListView
+      @todoListView = new TodoListView {collection: @filteredCollection}
+      @$el.find('[data-js-todo-list]').append @todoListView.render().$el
+      this
 
     addItem: ->
       @collection.addNewItem title: @$el.find('[data-js-todo-add-title]').val()

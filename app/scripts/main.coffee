@@ -5,7 +5,6 @@ require.config
     'modernizr': '/bower_components/modernizr/modernizr'
     'backbone': '/bower_components/backbone/backbone'
     'backbone.localStorage': '/bower_components/backbone.localStorage/backbone.localStorage'
-    'backbone.validation': '/bower_components/backbone.validation/dist/backbone-validation'
     # locals
     'todoModel': 'model/TodoModel'
     'todoCollection': 'collection/TodoCollection'
@@ -15,7 +14,6 @@ require.config
     'appView': 'view/AppView/AppView'
 
 require ['backbone', 'appView', 'todoItemView'], (Backbone, AppView, TodoItemView)->
-  # _.extend(Backbone.Model.prototype, Backbone.Validation.mixin)
   appView = new AppView()
 
   appView.render()

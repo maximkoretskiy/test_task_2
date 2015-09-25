@@ -22,6 +22,8 @@ define ['backbone'], (Backbone)->
       @done.prop('checked', @model.get 'done')
       @title = @$el.find('[data-js-todo-title]')
       @editTitle = @$el.find('[data-js-todo-edit-title]').val(@model.get 'title')
+      @editTitle.addClass 'hidden'
+      @title.removeClass 'hidden'
       this
 
     showEditTitle: ->
@@ -31,8 +33,6 @@ define ['backbone'], (Backbone)->
     saveEditedTitleOnEnter: (e)->
       if (e.keyCode == 13)
         @model.changeTitle @editTitle.val()
-        @editTitle.addClass 'hidden'
-        @title.removeClass 'hidden'
 
     toggleDone: (e)->
       @model.toggle()

@@ -7,10 +7,10 @@ define ['backbone', 'todoItemView'], (Backbone, TodoItemView)->
       # @listenTo(@collection, 'change', @render)
 
     render: ->
-      debugger
       @$el.html ''
       @collection.each (todoModel)=>
         @renderTodo(todoModel)
+      this
 
     renderTodo: (todoModel)->
       todoItemView = new TodoItemView({model: todoModel})
