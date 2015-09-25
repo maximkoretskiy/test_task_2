@@ -2,6 +2,8 @@
 window.App.Views.TodoItemView = Backbone.View.extend
   template: _.template @$('#todoItem').html()
 
+  className: 'todo-item'
+
   events:
     'click [data-js-todo-delete]': 'destroy'
     'change [data-js-todo-done]': 'toggleDone'

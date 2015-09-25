@@ -1,5 +1,7 @@
 'use strict'
 window.App.Collections.TodoFilteredCollection = Backbone.Collection.extend
+  model: window.App.Models.TodoModel
+
   localStorage: new Backbone.LocalStorage("todolist-filtered-backbone")
 
   filters:
@@ -10,6 +12,7 @@ window.App.Collections.TodoFilteredCollection = Backbone.Collection.extend
     @originalCollection = options.originalCollection
     @listenTo @originalCollection, 'update', @sync
     @listenTo @originalCollection, 'change', @sync
+    @sync()
 
   sync: ()->
     models = _.filter(@originalCollection.models, (item)=>
